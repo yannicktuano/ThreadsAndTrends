@@ -49,4 +49,7 @@ Route::middleware([
     Route::get('/aboutus', function () {
         return view('aboutus');
     })->name('aboutus');
+
+
+    
 });
