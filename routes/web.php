@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\ProductsController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -32,6 +33,7 @@ Route::get('product', function () {
 });
 
 
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -48,8 +50,10 @@ Route::middleware([
     })->name('cart');
     Route::get('/aboutus', function () {
         return view('aboutus');
-    })->name('aboutus');
-
-
-    
+    })->name('aboutus');    
 });
+Route::get('/manageproducts', [ProductsController::class, 'index'])->name('AllProducts');
+Route::post('/manageproducts', [ProductsController::class, 'store'])->name('AllProducts');
+Route::get('/manageproducts/delete/{id}', [ProductsController::class, 'Delete'])->name('delete.category');
+Route::get('/editproducts/edit/{id}', [ProductsController::class, 'Edit']);
+Route::post('/editProducts/update/{id}', [ProductsController::class, 'Update'])->name('update.category');
